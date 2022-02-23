@@ -472,7 +472,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7k
+                    7.1k
                 </div>
                 
 
@@ -725,8 +725,7 @@ layout: "contact"
 <ul>
 <li>编辑你刚刚新建的页面文件 <code>/source/friends/index.md</code>，加入以下内容：</li>
 </ul>
-<pre class="language-none"><code class="language-none">Code
----
+<pre class="language-none"><code class="language-none">---
 title: friends
 date: 2022-02-22 12:27:02
 type: "friends"
@@ -736,8 +735,7 @@ layout: "friends"
 <ul>
 <li>同时，在你的博客 <code>source</code> 目录下新建 <code>_data</code> 目录，在 <code>_data</code> 目录中新建 <code>friends.json</code> 文件，文件内容如下所示：</li>
 </ul>
-<pre class="language-none"><code class="language-none">Code
-[{
+<pre class="language-none"><code class="language-none">[{
     "avatar": "http://image.luokangyuan.com/1_qq_27922023.jpg",
     "name": "码酱",
     "introduction": "我不是大佬，只是在追寻大佬的脚步",
@@ -796,8 +794,7 @@ layout: "friends"
 </ul>
 </li>
 </ul>
-<pre class="language-none"><code class="language-none">Code
-menu:
+<pre class="language-none"><code class="language-none">menu:
   Index:
     url: /
     icon: fas fa-home
@@ -909,8 +906,7 @@ menu:
 <ul>
 <li>在 Hexo 站点目录下的 <code>_config.yml</code> 文件中，新增以下的配置项：</li>
 </ul>
-<pre class="language-none"><code class="language-none">Code
-feed:
+<pre class="language-none"><code class="language-none">feed:
   type: atom
   path: atom.xml
   limit: 20
@@ -1169,8 +1165,12 @@ color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com
 <ul>
 <li>将站点配置文件的 <code>permalink</code> 的值修改为：</li>
 </ul>
-<pre class="language-none"><code class="language-none">Code
-permalink: posts/:abbrlink.html  # 此处可以自己设置，也可以直接使用 :/abbrlink</code></pre>
+<pre class="language-none"><code class="language-none">permalink: posts/:abbrlink.html  # 此处可以自己设置，也可以直接使用 :/abbrlink</code></pre>
+
+<ul>
+<li>将站点配置文件的 <code>permalink</code> 上方 <code>url</code> 的值修改为：</li>
+</ul>
+<pre class="language-none"><code class="language-none">url: https://username.github.io  # 此处的username为你的github用户名</code></pre>
 
 <hr>
 <h3 id="4-4、页面获取标题"><a href="#4-4、页面获取标题" class="headerlink" title="4.4、页面获取标题"></a>4.4、页面获取标题</h3><p>修改 <code>themes\matery\layout\_partial</code> 中的 <code>bg-cover-content.ejs</code> 文件，其中原主题中这个文件的代码为 (大约在第 4 行)：</p>
@@ -1798,7 +1798,7 @@ hexo.on('new', function(data){
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">7k</span>
+                        class="white-color">7.1k</span>
             
             
             
