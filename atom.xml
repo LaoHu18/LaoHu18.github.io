@@ -6,7 +6,7 @@
   <link href="https://laohu18.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://laohu18.gitee.io/"/>
-  <updated>2022-02-23T08:12:27.260Z</updated>
+  <updated>2022-02-26T09:33:13.404Z</updated>
   <id>https://laohu18.gitee.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git入门操作</title>
+    <link href="https://laohu18.gitee.io/posts/2cb5.html"/>
+    <id>https://laohu18.gitee.io/posts/2cb5.html</id>
+    <published>2022-02-26T07:42:43.000Z</published>
+    <updated>2022-02-26T09:33:13.404Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、Git简介&quot;&gt;&lt;a href=&quot;#一、Git简介&quot; class=&quot;headerlink&quot; title=&quot;一、Git简介&quot;&gt;&lt;/a&gt;一、Git简介&lt;/h2&gt;&lt;h3 id=&quot;1-1、简介&quot;&gt;&lt;a href=&quot;#1-1、简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java学习" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Git" scheme="https://laohu18.gitee.io/tags/Git/"/>
+    
+    <category term="java" scheme="https://laohu18.gitee.io/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>小破站创建之旅</title>
