@@ -487,7 +487,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    12 分
                 </div>
                 
 
@@ -524,9 +524,55 @@
 <p>test：        测试</p>
 <p>package：打包</p>
 <p>install：    安装</p>
-<h3 id="1-4-maven坐标书写规范"><a href="#1-4-maven坐标书写规范" class="headerlink" title="1.4 maven坐标书写规范"></a>1.4 maven坐标书写规范</h3><p><img src="/posts/1029/2.png" alt="1559549224408"></p>
+<h3 id="1-4-maven坐标书写规范"><a href="#1-4-maven坐标书写规范" class="headerlink" title="1.4 maven坐标书写规范"></a>1.4 maven坐标书写规范</h3><p><img src="/posts/1029/2.png"></p>
 <p>查找依赖坐标：<a target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/io.bretty/console-table-builder/1.2">https://mvnrepository.com/artifact/io.bretty/console-table-builder/1.2</a></p>
-<h3 id="1-5-maven的依赖范围"><a href="#1-5-maven的依赖范围" class="headerlink" title="1.5 maven的依赖范围"></a>1.5 maven的依赖范围</h3><h3 id="1-6、仓库配置"><a href="#1-6、仓库配置" class="headerlink" title="1.6、仓库配置"></a>1.6、仓库配置</h3><h4 id="1-6-1、本地仓库配置"><a href="#1-6-1、本地仓库配置" class="headerlink" title="1.6.1、本地仓库配置"></a>1.6.1、本地仓库配置</h4><ol>
+<h3 id="1-5-maven的依赖范围"><a href="#1-5-maven的依赖范围" class="headerlink" title="1.5 maven的依赖范围"></a>1.5 maven的依赖范围</h3><table>
+<thead>
+<tr>
+<th>依赖范围</th>
+<th>对于编译classpath有效</th>
+<th>对于测试classpath有效</th>
+<th>对于运行时classpath有效</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>compile</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>spring-core</td>
+</tr>
+<tr>
+<td>test</td>
+<td>-</td>
+<td>Y</td>
+<td>-</td>
+<td>Junit</td>
+</tr>
+<tr>
+<td>provided</td>
+<td>Y</td>
+<td>Y</td>
+<td>-</td>
+<td>servlet-api</td>
+</tr>
+<tr>
+<td>runtime</td>
+<td>-</td>
+<td>Y</td>
+<td>Y</td>
+<td>JDBC驱动</td>
+</tr>
+<tr>
+<td>system</td>
+<td>Y</td>
+<td>Y</td>
+<td>-</td>
+<td>本地的，maven仓库之外的类库</td>
+</tr>
+</tbody></table>
+<h3 id="1-6、仓库配置"><a href="#1-6、仓库配置" class="headerlink" title="1.6、仓库配置"></a>1.6、仓库配置</h3><h4 id="1-6-1、本地仓库配置"><a href="#1-6-1、本地仓库配置" class="headerlink" title="1.6.1、本地仓库配置"></a>1.6.1、本地仓库配置</h4><ol>
 <li>找到Maven文件中conf文件夹下的settings.xml文件并打开</li>
 <li>找到该文件中的<code>&lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;</code></li>
 <li>在电脑上创建一个任意文件夹作为本地仓库，并将该文件夹的路径放入步骤2中的<code>&lt;localRepository&gt;文件路径&lt;/localRepository&gt;</code></li>
@@ -582,7 +628,7 @@
 <p><img src="/posts/1029/14.png"></p>
 <h3 id="3-3、maven工程的聚合"><a href="#3-3、maven工程的聚合" class="headerlink" title="3.3、maven工程的聚合"></a>3.3、maven工程的聚合</h3><p>在maven工程的pom.xml文件中可以使用<modules>标签将其他maven工程聚合到一起，聚合的目的是为了进行统一操作。</modules></p>
 <p>例如拆分后的maven工程有多个，如果要进行打包，就需要针对每个工程分别执行打包命令，操作起来非常繁琐。这时就可以使用<modules>标签将这些工程统一聚合到maven工程中，需要打包的时候，只需要在此工程中执行一次打包命令，其下被聚合的工程就都会被打包了。</modules></p>
-<p><img src="/posts/1029/15.png" alt="1559551000245"></p>
+<p><img src="/posts/1029/15.png"></p>
 <h2 id="四、maven私服"><a href="#四、maven私服" class="headerlink" title="四、maven私服"></a>四、maven私服</h2><h3 id="4-1、私服说明"><a href="#4-1、私服说明" class="headerlink" title="4.1、私服说明"></a>4.1、私服说明</h3><p>maven仓库分为本地仓库和远程仓库，而远程仓库又分为maven中央仓库、其他远程仓库和私服（私有服务器）。其中，中央仓库是由maven官方提供的，而私服就需要我们自己搭建了。</p>
 <p>maven私服就是公司局域网内的maven远程仓库，每个员工的电脑上安装maven软件并且连接maven私服，程序员可以将自己开发的项目打成jar并发布到私服，其它项目组成员就可以从私服下载所依赖的jar。私服还充当一个代理服务器的角色，当私服上没有jar包时会从maven中央仓库自动下载。</p>
 <p>nexus 是一个maven仓库管理器（其实就是一个软件），nexus可以充当maven私服，同时nexus还提供强大的仓库管理、构件搜索等功能。</p>
@@ -1224,7 +1270,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">18.9k</span>
+                        class="white-color">19k</span>
             
             
             
