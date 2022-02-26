@@ -6,7 +6,7 @@
   <link href="https://laohu18.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://laohu18.gitee.io/"/>
-  <updated>2022-02-26T09:33:13.404Z</updated>
+  <updated>2022-02-26T11:39:07.086Z</updated>
   <id>https://laohu18.gitee.io/</id>
   
   <author>
@@ -17,11 +17,111 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Maven的使用</title>
+    <link href="https://laohu18.gitee.io/posts/1029.html"/>
+    <id>https://laohu18.gitee.io/posts/1029.html</id>
+    <published>2022-02-26T10:34:58.000Z</published>
+    <updated>2022-02-26T11:39:07.086Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、maven基础知识&quot;&gt;&lt;a href=&quot;#一、maven基础知识&quot; class=&quot;headerlink&quot; title=&quot;一、maven基础知识&quot;&gt;&lt;/a&gt;一、maven基础知识&lt;/h2&gt;&lt;h3 id=&quot;1-1、maven介绍&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java学习笔记" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Java工具类" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    
+    
+    <category term="java" scheme="https://laohu18.gitee.io/tags/java/"/>
+    
+    <category term="Maven" scheme="https://laohu18.gitee.io/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring MVC基础入门</title>
+    <link href="https://laohu18.gitee.io/posts/3377.html"/>
+    <id>https://laohu18.gitee.io/posts/3377.html</id>
+    <published>2022-02-26T10:34:30.000Z</published>
+    <updated>2022-02-26T12:02:20.159Z</updated>
+    
+    
+    
+    
+    <category term="Java自学笔记" scheme="https://laohu18.gitee.io/categories/Java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="SpringMVC" scheme="https://laohu18.gitee.io/categories/Java%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/SpringMVC/"/>
+    
+    
+    <category term="Java" scheme="https://laohu18.gitee.io/tags/Java/"/>
+    
+    <category term="SpringMVC" scheme="https://laohu18.gitee.io/tags/SpringMVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring基础介绍</title>
+    <link href="https://laohu18.gitee.io/posts/8e37.html"/>
+    <id>https://laohu18.gitee.io/posts/8e37.html</id>
+    <published>2022-02-26T10:33:48.000Z</published>
+    <updated>2022-02-26T12:00:55.906Z</updated>
+    
+    
+    
+    
+    <category term="Java学习笔记" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Spring" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://laohu18.gitee.io/tags/Java/"/>
+    
+    <category term="Spring" scheme="https://laohu18.gitee.io/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis入门学习</title>
+    <link href="https://laohu18.gitee.io/posts/9664.html"/>
+    <id>https://laohu18.gitee.io/posts/9664.html</id>
+    <published>2022-02-26T10:32:41.000Z</published>
+    <updated>2022-02-26T11:57:12.743Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、MyBatis简介&quot;&gt;&lt;a href=&quot;#一、MyBatis简介&quot; class=&quot;headerlink&quot; title=&quot;一、MyBatis简介&quot;&gt;&lt;/a&gt;一、MyBatis简介&lt;/h3&gt;&lt;h4 id=&quot;1、原始jdbc存在的问题&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java学习笔记" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Java工具类" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    
+    
+    <category term="Java" scheme="https://laohu18.gitee.io/tags/Java/"/>
+    
+    <category term="MyBatis" scheme="https://laohu18.gitee.io/tags/MyBatis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Git入门操作</title>
     <link href="https://laohu18.gitee.io/posts/2cb5.html"/>
     <id>https://laohu18.gitee.io/posts/2cb5.html</id>
     <published>2022-02-26T07:42:43.000Z</published>
-    <updated>2022-02-26T09:33:13.404Z</updated>
+    <updated>2022-02-26T12:02:46.281Z</updated>
     
     
       
@@ -34,12 +134,14 @@
     
     
     
-    <category term="Java学习" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0/"/>
+    <category term="Java学习笔记" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Java工具类" scheme="https://laohu18.gitee.io/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
     
     
     <category term="Git" scheme="https://laohu18.gitee.io/tags/Git/"/>
     
-    <category term="java" scheme="https://laohu18.gitee.io/tags/java/"/>
+    <category term="Java" scheme="https://laohu18.gitee.io/tags/Java/"/>
     
   </entry>
   
