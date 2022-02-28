@@ -465,21 +465,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-26
+                    2022-02-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -502,7 +502,210 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="一、枚举类的概述"><a href="#一、枚举类的概述" class="headerlink" title="一、枚举类的概述"></a>一、枚举类的概述</h2><ul>
+<li>枚举类的理解：类的对象只有有限个，确定的。我们称此类为枚举类</li>
+<li>当需要定义一组常量时，强烈建议使用枚举类</li>
+<li>如果枚举类中只一个对象，则可以作为单例模式的实现方式。</li>
+</ul>
+<h2 id="二、枚举类中的常用方法"><a href="#二、枚举类中的常用方法" class="headerlink" title="二、枚举类中的常用方法"></a>二、枚举类中的常用方法</h2><ul>
+<li><p><code>values()</code>方法：返回枚举类型的对象数组。该方法可以很方便地遍历所有的枚举值。</p>
+</li>
+<li><p><code>valueOf(String str)</code>：可以把一个字符串转为对应的枚举类对象。要求字符串必须是枚举类对象的“名字”。如不是，会有运行时异常：<code>IllegalArgumentException</code></p>
+</li>
+<li><p><code>toString()</code>：返回当前枚举类对象常量的名称</p>
+</li>
+</ul>
+<h2 id="三、自定义枚举类"><a href="#三、自定义枚举类" class="headerlink" title="三、自定义枚举类"></a>三、自定义枚举类</h2><ul>
+<li>构造器私有化 (固定值, 所以不允许外界在创建对象)</li>
+</ul>
+<ul>
+<li>对外暴露类中创建的对象(<code>public static final</code>修饰的, 实现底层优化)</li>
+</ul>
+<ul>
+<li>只提供<code>get</code>方法, 不提供<code>set</code>方法 (因为枚举对象值通常为只读)</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">/**
+ * 一、枚举类的使用
+ * 1.枚举类的理解：类的对象只有有限个，确定的。我们称此类为枚举类
+ * 2.当需要定义一组常量时，强烈建议使用枚举类
+ * 3.如果枚举类中只有一个对象，则可以作为单例模式的实现方式。
+ *
+ * 二、如何定义枚举类
+ * 方式一：jdk5.0之前，自定义枚举类
+ * 方式二：jdk5.0，可以使用enum关键字定义枚举类
+ *
+ * 三、Enum类中的常用方法：
+ *    values()方法：返回枚举类型的对象数组。该方法可以很方便地遍历所有的枚举值。
+ *    valueOf(String str)：可以把一个字符串转为对应的枚举类对象。要求字符串必须是枚举类对象的“名字”。如不是，会有运行时异常：
+ *    toString()：返回当前枚举类对象常量的名称
+ *
+ * 四、使用enum关键字定义的枚举类实现接口的情况
+ *   情况一：实现接口，在enum类中实现抽象方法
+ *   情况二：让枚举类的对象分别实现接口中的抽象方法
+ */
+public class SeasonTest {
+
+    public static void main(String[] args) {
+        Season spring = Season.SPRING;
+        System.out.println(spring);
+
+    }
+
+}
+//自定义枚举类
+class Season{
+    //1.声明Season对象的属性:private final修饰
+    private final String seasonName;
+    private final String seasonDesc;
+
+    //2.私有化类的构造器,并给对象属性赋值
+    private Season(String seasonName,String seasonDesc){
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+    //3.提供当前枚举类的多个对象：public static final的
+    public static final Season SPRING = new Season("春天","春暖花开");
+    public static final Season SUMMER = new Season("夏天","夏日炎炎");
+    public static final Season AUTUMN = new Season("秋天","秋高气爽");
+    public static final Season WINTER = new Season("冬天","冰天雪地");
+
+    //4.其他诉求1：获取枚举类对象的属性
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+    //4.其他诉求1：提供toString()
+    @Override
+    public String toString() {
+        return "Season{" +
+                "seasonName='" + seasonName + '\'' +
+                ", seasonDesc='" + seasonDesc + '\'' +
+                '}';
+    }
+}
+</code></pre>
+
+<h3 id="11-4、使用enum来创建枚举类"><a href="#11-4、使用enum来创建枚举类" class="headerlink" title="11.4、使用enum来创建枚举类"></a>11.4、使用enum来创建枚举类</h3><ul>
+<li>当我们使用 <code>enum</code> 关键字开发一个枚举类时，默认会继承 <code>Enum</code> 类, 而且是一个 <code>final</code> 类[如何证明], 使用 javap 工具来演示</li>
+</ul>
+<ul>
+<li>传统的 <code>public static final Season2 SPRING = new Season2(“春天”, “温暖”)</code>； 简化成 <code>SPRING(“春天”, “温暖”)</code>， 这里必须知道，它调用的是哪个构造器.</li>
+</ul>
+<ul>
+<li>如果使用无参构造器创建枚举对象，则实参列表和小括号都可以省略</li>
+</ul>
+<ul>
+<li>当有多个枚举对象时，使用,间隔，最后有一个分号结尾</li>
+</ul>
+<ul>
+<li>枚举对象必须放在枚举类的行首.</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">/**
+ * 使用enum关键字定义枚举类
+ * 说明：定义的枚举类默认继承于java.lang.Enum类
+ */
+public class SeasonTest1 {
+    public static void main(String[] args) {
+        Season1 summer = Season1.SUMMER;
+        //toString():返回枚举类对象的名称
+        System.out.println(summer.toString());
+
+        System.out.println("****************");
+        //values():返回所有的枚举类对象构成的数组
+        Season1[] values = Season1.values();
+        for(int i = 0;i &lt; values.length;i++){
+            System.out.println(values[i]);
+            values[i].show();
+        }
+        
+        System.out.println("****************");
+        Thread.State[] values1 = Thread.State.values();
+        for (int i = 0; i &lt; values1.length; i++) {
+            System.out.println(values1[i]);
+        }
+
+        //valueOf(String objName):返回枚举类中对象名是objName的对象。
+        Season1 winter = Season1.valueOf("WINTER");
+        //如果没有objName的枚举类对象，则抛异常：IllegalArgumentException
+        System.out.println(winter);
+        winter.show();
+    }
+}
+
+interface Info{
+    void show();
+}
+
+//使用enum关键字枚举类
+enum Season1 implements Info{
+    //1.提供当前枚举类的对象，多个对象之间用","隔开，末尾对象";"结束
+    SPRING("春天","春暖花开"){
+        @Override
+        public void show() {
+            System.out.println("春天在哪里？");
+        }
+    },
+    SUMMER("夏天","夏日炎炎"){
+        @Override
+        public void show() {
+            System.out.println("宁夏");
+        }
+    },
+    AUTUMN("秋天","秋高气爽"){
+        @Override
+        public void show() {
+            System.out.println("秋天不回来");
+        }
+    },
+    WINTER("冬天","冰天雪地"){
+        @Override
+        public void show() {
+            System.out.println("大约在冬季");
+        }
+    };
+
+    //2.声明Season对象的属性:private final修饰
+    private final String seasonName;
+    private final String seasonDesc;
+
+    //2.私有化类的构造器,并给对象属性赋值
+
+    private Season1(String seasonName,String seasonDesc){
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+    //4.其他诉求1：获取枚举类对象的属性
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+    
+    //4.其他诉求1：提供toString()
+    @Override
+    public String toString() {
+        return "Season1{" +
+                "seasonName='" + seasonName + '\'' +
+                ", seasonDesc='" + seasonDesc + '\'' +
+                '}';
+    }
+
+
+    @Override
+    public void show() {
+        System.out.println("这是一个季节");
+    }
+}
+</code></pre>
+
+
                 
             </div>
             <hr/>
@@ -999,7 +1202,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">62.3k</span>
+                        class="white-color">68.3k</span>
             
             
             
