@@ -465,21 +465,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-26
+                    2022-02-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    699
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -502,7 +502,156 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="一、异常"><a href="#一、异常" class="headerlink" title="一、异常"></a>一、异常</h2><ul>
+<li><p>异常的概述：异常就是程序出现了不正常的情况</p>
+</li>
+<li><p>异常的体系结构：</p>
+</li>
+</ul>
+<p><img src="/posts/bd7c/1.png"></p>
+<h2 id="二、JVM默认处理异常的方式"><a href="#二、JVM默认处理异常的方式" class="headerlink" title="二、JVM默认处理异常的方式"></a>二、JVM默认处理异常的方式</h2><p>如果程序出现了问题，我们没有做任何处理，最终JVM 会做默认的处理，处理方式有如下两个步骤：</p>
+<ul>
+<li>把异常的名称，错误原因及异常出现的位置等信息输出在了控制台</li>
+<li>程序停止执行</li>
+</ul>
+<h2 id="三、try-catch方式处理异常"><a href="#三、try-catch方式处理异常" class="headerlink" title="三、try-catch方式处理异常"></a>三、try-catch方式处理异常</h2><ul>
+<li><p>定义格式</p>
+<pre class="language-java" data-language="java"><code class="language-java">try {
+	可能出现异常的代码;
+} catch(异常类名 变量名) {
+	异常的处理代码;
+} finally{
+  最终必须执行的代码  
+}</code></pre></li>
+<li><p>执行流程</p>
+<ul>
+<li>程序从 <code>try</code> 里面的代码开始执行</li>
+<li>出现异常，就会跳转到对应的 <code>catch</code> 里面去执行</li>
+<li>执行完毕之后，程序还可以继续往下执行</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、Throwable成员方法（应用）"><a href="#四、Throwable成员方法（应用）" class="headerlink" title="四、Throwable成员方法（应用）"></a>四、Throwable成员方法（应用）</h2><ul>
+<li><p>常用方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public String getMessage()</td>
+<td>返回此 throwable 的详细消息字符串</td>
+</tr>
+<tr>
+<td>public String toString()</td>
+<td>返回此可抛出的简短描述</td>
+</tr>
+<tr>
+<td>public void printStackTrace()</td>
+<td>把异常的错误信息输出在控制台</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>示例代码</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class ExceptionDemo {
+    public static void main(String[] args) {
+        System.out.println("开始");
+        method();
+        System.out.println("结束");
+    }
+
+    public static void method() {
+        try {
+            int[] arr = {1, 2, 3};
+            System.out.println(arr[3]); //new ArrayIndexOutOfBoundsException();越界异常
+            System.out.println("这里能够访问到吗");
+        } catch (ArrayIndexOutOfBoundsException e) { //new ArrayIndexOutOfBoundsException();
+            //将异常的错误信息输出在控制台上 
+            e.printStackTrace();		
+
+            //返回此 throwable 的详细消息字符串
+            //System.out.println(e.getMessage());
+
+            //返回此可抛出的简短描述
+			//System.out.println(e.toString());
+        }
+    }
+}</code></pre>
+
+<h2 id="五、编译时异常和运行时异常的区别"><a href="#五、编译时异常和运行时异常的区别" class="headerlink" title="五、编译时异常和运行时异常的区别"></a>五、编译时异常和运行时异常的区别</h2><ul>
+<li><p>编译时异常</p>
+<ul>
+<li>都是<code>Exception</code>类及其子类</li>
+<li>必须显示处理，否则程序就会发生错误，无法通过编译</li>
+</ul>
+</li>
+<li><p>运行时异常</p>
+<ul>
+<li>都是<code>RuntimeException</code>类及其子类</li>
+<li>无需显示处理，也可以和编译时异常一样处理</li>
+</ul>
+</li>
+</ul>
+<h2 id="六、throws方式处理异常"><a href="#六、throws方式处理异常" class="headerlink" title="六、throws方式处理异常"></a>六、throws方式处理异常</h2><ul>
+<li><p>定义格式</p>
+<pre class="language-java" data-language="java"><code class="language-java">public void 方法() throws 异常类名 {
+    
+}</code></pre></li>
+<li><p>注意事项</p>
+<ul>
+<li>这个<code>throws</code>格式是跟在方法的括号后面的</li>
+<li>编译时异常必须要进行处理，两种处理方案：<code>try...catch …</code>或者 <code>throws</code>，如果采用 <code>throws</code> 这种方案，将来谁调用谁处理</li>
+<li>运行时异常可以不处理，出现问题后，需要我们回来修改代码</li>
+</ul>
+</li>
+<li><p><code>throws</code>和<code>throw</code>的区别：</p>
+</li>
+</ul>
+<p><img src="/posts/bd7c/2.png"></p>
+<h2 id="七、自定义异常"><a href="#七、自定义异常" class="headerlink" title="七、自定义异常"></a>七、自定义异常</h2><ul>
+<li><p>自定义异常类</p>
+<pre class="language-java" data-language="java"><code class="language-java">public class ScoreException extends Exception {
+
+    public ScoreException() {}
+
+    public ScoreException(String message) {
+        super(message);
+    }
+
+}</code></pre></li>
+<li><p>老师类</p>
+<pre class="language-java" data-language="java"><code class="language-java">public class Teacher {
+    public void checkScore(int score) throws ScoreException {
+        if(score&lt;0 || score&gt;100) {
+//            throw new ScoreException();
+            throw new ScoreException("你给的分数有误，分数应该在0-100之间");
+        } else {
+            System.out.println("成绩正常");
+        }
+    }
+}</code></pre></li>
+<li><p>测试类</p>
+<pre class="language-java" data-language="java"><code class="language-java">public class Demo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入分数：");
+
+        int score = sc.nextInt();
+
+        Teacher t = new Teacher();
+        try {
+            t.checkScore(score);
+        } catch (ScoreException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre></li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -999,7 +1148,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">47.2k</span>
+                        class="white-color">62.3k</span>
             
             
             

@@ -469,21 +469,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-26
+                    2022-02-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    4.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    18 分
                 </div>
                 
 
@@ -506,7 +506,801 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="一、File类"><a href="#一、File类" class="headerlink" title="一、File类"></a>一、File类</h2><h3 id="1-1、File类的概述"><a href="#1-1、File类的概述" class="headerlink" title="1.1、File类的概述"></a>1.1、File类的概述</h3><ul>
+<li><p><code>File</code>类介绍</p>
+<ul>
+<li>它是文件和目录路径名的抽象表示</li>
+<li>文件和目录是可以通过<code>File</code>封装成对象的</li>
+<li>对于<code>File</code>而言，其封装的并不是一个真正存在的文件，仅仅是一个路径名而已。它可以是存在的，也可以是不存在的。将来是要通过具体的操作把这个路径的内容转换为具体存在的</li>
+</ul>
+</li>
+<li><p><code>File</code>类的构造方法：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>File(String   pathname)</td>
+<td>通过给定的路径名字符串转换为抽象路径名来创建新的 File实例</td>
+</tr>
+<tr>
+<td>File(String   parent, String child)</td>
+<td>从父路径名字符串和子路径名字符串创建新的File实例</td>
+</tr>
+<tr>
+<td>File(File   parent, String child)</td>
+<td>从父抽象路径名和子路径名字符串创建新的File实例</td>
+</tr>
+</tbody></table>
+<ul>
+<li>示例：</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class FileDemo {
+    public static void main(String[] args) {
+        //File(String pathname)：通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。
+        File f1 = new File("E:\\itcast\\java.txt");
+        System.out.println(f1);
+
+        //File(String parent, String child)：从父路径名字符串和子路径名字符串创建新的 File实例。
+        File f2 = new File("E:\\itcast","java.txt");
+        System.out.println(f2);
+
+        //File(File parent, String child)：从父抽象路径名和子路径名字符串创建新的 File实例。
+        File f3 = new File("E:\\itcast");
+        File f4 = new File(f3,"java.txt");
+        System.out.println(f4);
+    }
+}</code></pre>
+
+<h3 id="1-2、File类创建功能"><a href="#1-2、File类创建功能" class="headerlink" title="1.2、File类创建功能"></a>1.2、File类创建功能</h3><ul>
+<li>创建方法：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public boolean createNewFile()</td>
+<td>当具有该名称的文件不存在时，创建一个由该抽象路径名命名的新空文件</td>
+</tr>
+<tr>
+<td>public boolean mkdir()</td>
+<td>创建由此抽象路径名命名的目录</td>
+</tr>
+</tbody></table>
+<ul>
+<li>示例：</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class FileDemo {
+    public static void main(String[] args) throws IOException {
+        //需求1：我要在E:\\itcast目录下创建一个文件java.txt
+        File f1 = new File("E:\\itcast\\java.txt");
+        System.out.println(f1.createNewFile());
+        System.out.println("--------");
+
+        //需求2：我要在E:\\itcast目录下创建一个目录JavaSE
+        File f2 = new File("E:\\itcast\\JavaSE");
+        System.out.println(f2.mkdir());
+        System.out.println("--------");
+    }
+}</code></pre>
+
+<h3 id="1-3、File类删除功能"><a href="#1-3、File类删除功能" class="headerlink" title="1.3、File类删除功能"></a>1.3、File类删除功能</h3><ul>
+<li>删除方法：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public boolean   delete()</td>
+<td>删除由此抽象路径名表示的文件或目录</td>
+</tr>
+</tbody></table>
+<ul>
+<li>示例：</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class FileDemo {
+    public static void main(String[] args) throws IOException {
+        //需求1：在当前模块目录下创建java.txt文件
+        File f1 = new File("myFile\\java.txt");
+		
+        //需求2：删除当前模块目录下的java.txt文件
+        System.out.println(f1.delete());
+
+        //需求3：在当前模块目录下创建itcast目录
+        File f2 = new File("myFile\\itcast");
+
+        //需求4：删除当前模块目录下的itcast目录
+        System.out.println(f2.delete());
+
+        //需求5：在当前模块下创建一个目录itcast,然后在该目录下创建一个文件java.txt
+        File f3 = new File("myFile\\itcast");
+        File f4 = new File("myFile\\itcast\\java.txt");
+
+        //需求6：删除当前模块下的目录itcast
+        System.out.println(f4.delete());
+        System.out.println(f3.delete());
+    }
+}</code></pre>
+
+<h3 id="1-4、File类判断和获取功能"><a href="#1-4、File类判断和获取功能" class="headerlink" title="1.4、File类判断和获取功能"></a>1.4、File类判断和获取功能</h3><ul>
+<li><p>判断功能</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public   boolean isDirectory()</td>
+<td>测试此抽象路径名表示的File是否为目录</td>
+</tr>
+<tr>
+<td>public   boolean isFile()</td>
+<td>测试此抽象路径名表示的File是否为文件</td>
+</tr>
+<tr>
+<td>public   boolean   exists()</td>
+<td>测试此抽象路径名表示的File是否存在</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>获取功能</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public   String getAbsolutePath()</td>
+<td>返回此抽象路径名的绝对路径名字符串</td>
+</tr>
+<tr>
+<td>public   String getPath()</td>
+<td>将此抽象路径名转换为路径名字符串</td>
+</tr>
+<tr>
+<td>public   String getName()</td>
+<td>返回由此抽象路径名表示的文件或目录的名称</td>
+</tr>
+<tr>
+<td>public   String[] list()</td>
+<td>返回此抽象路径名表示的目录中的文件和目录的名称字符串数组</td>
+</tr>
+<tr>
+<td>public   File[] listFiles()</td>
+<td>返回此抽象路径名表示的目录中的文件和目录的File对象数组</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>绝对路径和相对路径的区别</p>
+<ul>
+<li>绝对路径：完整的路径名，不需要任何其他信息就可以定位它所表示的文件。例如：<code>E:\itcast\java.txt</code></li>
+<li>相对路径：必须使用取自其他路径名的信息进行解释。例如：<code>myFile\\java.txt</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="二、IO流"><a href="#二、IO流" class="headerlink" title="二、IO流"></a>二、IO流</h2><h3 id="2-1、IO流概述"><a href="#2-1、IO流概述" class="headerlink" title="2.1、IO流概述"></a>2.1、IO流概述</h3><ul>
+<li><code>IO流</code>介绍：<ul>
+<li><code>IO</code>：输入输出（<code>Input/Output</code>）</li>
+<li>IO流的本质是数据传输，根据数据传输的特性将流抽象为各种类</li>
+</ul>
+</li>
+<li><code>IO流</code>分类：<ul>
+<li>根据处理数据类型的不同：字符流、字节流</li>
+<li>根据数据流流向不同：输入流、输出流</li>
+</ul>
+</li>
+<li><code>IO流</code>的使用场景<ul>
+<li>如果操作的是纯文本文件，优先使用字符流</li>
+<li>如果操作的是图片、视频、音频等二进制文件。优先使用字节流</li>
+<li>如果不确定文件类型，优先使用字节流。字节流是万能的流</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2、字节流"><a href="#2-2、字节流" class="headerlink" title="2.2、字节流"></a>2.2、字节流</h3><ul>
+<li>字节流抽象基类：<ul>
+<li><code>InputStream</code>：这个抽象类是表示字节输入流的所有类的超类</li>
+<li><code>OutputStream</code>：这个抽象类是表示字节输出流的所有类的超类</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-1、字节输出流"><a href="#2-2-1、字节输出流" class="headerlink" title="2.2.1、字节输出流"></a>2.2.1、字节输出流</h4><ul>
+<li><p>字节输出流：</p>
+<ul>
+<li>从程序写入到文件中去</li>
+<li><code>FileOutputStream(String name)</code>：创建文件输出流以指定的名称写入文件</li>
+</ul>
+</li>
+<li><p>字节输出流使用步骤：</p>
+<ul>
+<li>确定目标文件</li>
+<li>构建文件的字节流输出对象</li>
+<li>确定要输出的内容</li>
+<li>将内容写到文件中去</li>
+<li>释放流</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class FileOutputStreamDemo {
+    public static void main(String[] args) throws IOException {
+        //确定目标文件
+        File file = new File("myByteStream\\fos.txt");
+        //创建字节输出流对象
+        FileOutputStream fos = new FileOutputStream(file);
+        //确定要输出的内容
+        String str = "输出内容";
+        //将内容写入到文件中
+        fos.write(str.getBytes());
+        //关闭流
+        fos.close();
+    }
+}</code></pre>
+
+
+
+<ul>
+<li>字节流写入数据如何实现追加<ul>
+<li><code>public FileOutputStream(String name,boolean append)</code></li>
+<li>创建文件输出流以指定的名称写入文件。如果第二个参数为<code>true</code> ，则字节将写入文件的末尾而不是开头</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-2、字节输入流"><a href="#2-2-2、字节输入流" class="headerlink" title="2.2.2、字节输入流"></a>2.2.2、字节输入流</h4><ul>
+<li><p>字节输入流：</p>
+<ul>
+<li>从文件读取到程序中来</li>
+<li><code>FileInputStream(String name)</code>：通过打开与实际文件的连接来创建一个<code>FileInputStream</code> ，该文件由文件系统中的路径名<code>name</code>命名</li>
+</ul>
+</li>
+<li><p>字节输入流使用步骤：</p>
+<ul>
+<li>确定目标文件</li>
+<li>构建文件的字节流输入对象</li>
+<li>创建字节数组</li>
+<li>定义每次读取字节长度</li>
+<li>把数据读入到数组中，返回读取的字节数，当不等于-1时，表示读取到数据</li>
+<li>释放流</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class FileOutputStreamDemo {
+    public static void main(String[] args) throws IOException {
+        //确定目标文件
+        File file = new File("myByteStream\\fos.txt");
+        //创建字节输出流对象
+        FileInputStream fis = new FileIutputStream(file);
+        //创建字节数组
+        byte[] bytes = new byte[1024];
+        StringBuilder buf = new StringBuilder();
+        //定义每次读取字节长度
+        int len = -1;
+        //把数据读入到数组中，返回读取的字节数，当不等于-1时，表示读取到数据
+        while((len = fis.read(bytes)) != -1){
+            buf.append(new String(bytes,0,len));
+        }
+        //打印输入内容
+        System.out.println(buf);
+        //关闭流
+        fis.close();
+    }
+}</code></pre>
+
+<h3 id="2-3、字符流"><a href="#2-3、字符流" class="headerlink" title="2.3、字符流"></a>2.3、字符流</h3><p>字符流抽象基类：</p>
+<ul>
+<li><code>Reader</code>：这个抽象类是表示字符输入流的超类</li>
+<li><code>Writer</code>：这个抽象类是表示字符输出流的超类</li>
+</ul>
+<h4 id="2-3-1、字符输出流"><a href="#2-3-1、字符输出流" class="headerlink" title="2.3.1、字符输出流"></a>2.3.1、字符输出流</h4><ul>
+<li><p>字符输出流：</p>
+<ul>
+<li>从程序写入到文件中去</li>
+<li><code>FileWriter(String name)</code>：创建文件输出流以指定的名称写入文件</li>
+</ul>
+</li>
+<li><p>字节输出流使用步骤：</p>
+<ul>
+<li>确定目标文件</li>
+<li>构建文件的字符流输出对象</li>
+<li>确定要输出的内容</li>
+<li>将内容写到文件中去</li>
+<li>释放流</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class CharStream{
+	public static void main(String[] args) throws IOException { 
+		//确定目标文件
+    	File file = new File("D:\\java\\daima\\123456.txt");
+		//构建文件的字符流输出对象
+        Writer writer = new FileWriter(file);
+        //确定要输出的内容
+        String str = "输出内容";
+        //将内容写到文本中去
+        writer.write(str);     
+        //释放流
+        reader.close();
+   }
+}</code></pre>
+
+<h4 id="2-3-2、字符输入流"><a href="#2-3-2、字符输入流" class="headerlink" title="2.3.2、字符输入流"></a>2.3.2、字符输入流</h4><ul>
+<li><p>字符输入流：</p>
+<ul>
+<li>从文件读取到程序中来</li>
+<li><code>FileReader(String name)</code>：创建文件输出流以指定的名称写入文件</li>
+</ul>
+</li>
+<li><p>字节输出流使用步骤：</p>
+<ul>
+<li>确定目标文件</li>
+<li>构建文件的字符流输入对象</li>
+<li>创建字符数组</li>
+<li>定义每次读取字符长度</li>
+<li>把数据读入到数组中，返回读取的字符数，当不等于-1时，表示读取到数据</li>
+<li>释放流</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class CharStream{
+	public static void main(String[] args) throws IOException { 
+		//确定目标文件
+    	File file = new File("D:\\java\\daima\\123456.txt");
+    	//创建文件的字符流输入对象
+		Reader reader = new FileReader(file);
+		//创建字符数组
+        StringBuilder str = new StringBuilder();
+        char[] chars = new char[1];
+        //定义每次读取字符长度
+        int length = -1;
+        //把数据读入到数组中，返回读取的字符数，当不等于-1时，表示读取到数据
+        while ((length = reader.read(chars))!=-1){
+            str.append(new String(chars,0,length));
+        }
+        reader.close();
+    }
+}</code></pre>
+
+<h3 id="2-4、字节字符转换流"><a href="#2-4、字节字符转换流" class="headerlink" title="2.4、字节字符转换流"></a>2.4、字节字符转换流</h3><ul>
+<li><code>OutputStreamWriter</code>：可将输出的字符流转换为字节流输出形式</li>
+<li><code>InputStreamReader</code>：可将输入的字节流转换为字符流输入形式</li>
+</ul>
+<h2 id="三、缓冲流"><a href="#三、缓冲流" class="headerlink" title="三、缓冲流"></a>三、缓冲流</h2><ul>
+<li>缓冲流：能够高效的读写信息，现将数据缓存起来，然后一起写入或读取</li>
+<li>缓冲流的分类：<ul>
+<li>字节缓冲流</li>
+<li>字符缓冲流</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-1、字节缓冲流"><a href="#3-1、字节缓冲流" class="headerlink" title="3.1、字节缓冲流"></a>3.1、字节缓冲流</h3><ul>
+<li><p>字节缓冲流介绍：</p>
+<ul>
+<li><code>BufferedOutputStream</code>：字节缓冲输出流<ul>
+<li>通过设置这样的输出流，应用程序可以向底层输出流写入字节，而不必为写入的每个字节导致底层系统的调用</li>
+<li><code>BufferedOutputStream</code> 内部默认缓存大小是8kb，每次写入时存储到缓存的byte数组中，当数组存满时，会把数组中的数据写入文件，并将缓存清零</li>
+</ul>
+</li>
+<li><code>BufferedInputStream</code>：字节缓冲输入流。<ul>
+<li>创建一个内部缓冲区数组，当从流中读取或跳过字节时，内部缓冲区将根据需要从所包含的输入流中重新填充，一次很多字节</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class bytebuffer{
+	public static void main(String[] args) throws IOException {
+        //确定缓冲输入流的目标文件
+        File file = new File("D:\\java\\daima\\123456.txt");
+        //确定缓冲输出流的目标文件
+        File copy = new File("D:\\java\\daima\\copy.txt");
+        //记录开始的时间
+        long start = System.currentTimeMillis();
+        //创建字节缓冲输入流对象
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+        //创建字节缓冲输出流对象
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(copy));
+        //定义字节数组以及每次读取字节长度
+        int len = -1;
+        byte[] bytes = new byte[1024];
+        //读取文件内容放到字节数组中，并写入到另一文件
+        while ((len = bis.read(bytes))!=-1){
+            bos.write(bytes,0,len);
+            //刷新缓存
+            bos.flush();
+        }
+        bis.close();
+        bos.close();
+        long end = System.currentTimeMillis();
+        System.out.println("复制所用的时间为"+(end - start)+"毫秒");
+	}
+}</code></pre>
+
+<h3 id="3-2、字符缓冲流"><a href="#3-2、字符缓冲流" class="headerlink" title="3.2、字符缓冲流"></a>3.2、字符缓冲流</h3><ul>
+<li><p>字符缓冲流介绍：</p>
+<ul>
+<li><p><code>BufferedWriter</code>：将文本写入字符输出流，缓冲字符，以提供单个字符，数组和字符串的高效写入，可以指定缓冲区大小，或者可以接受默认大小。默认值足够大，可用于大多数用途</p>
+</li>
+<li><p><code>BufferedReader</code>：从字符输入流读取文本，缓冲字符，以提供字符，数组和行的高效读取，可以指定缓冲区大小，或者可以使用默认大小。 默认值足够大，可用于大多数用途</p>
+</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">public class charbuffer{
+	public static void main(String[] args) throws IOException {
+        //确定缓冲输入流的目标文件
+        File file = new File("D:\\java\\daima\\123456.txt");
+        //确定缓冲输出流的目标文件
+        File copy = new File("D:\\java\\daima\\copy.txt");
+        //记录开始的时间
+        long start = System.currentTimeMillis();
+        //创建字节缓冲输入流对象
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        //创建字节缓冲输出流对象
+        BufferedWriter bw = new BufferedWriter(new FileWriter(copy));
+        //定义字节数组以及每次读取字节长度
+        int len = -1;
+        char[] chars = new char[1024];
+        //读取文件内容放到字节数组中，并写入到另一文件
+        while ((len = br.read(chars))!=-1){
+            bw.write(chars,0,len);
+            //刷新缓存
+            bw.flush();
+        }
+        br.close();
+        bw.close();
+        long end = System.currentTimeMillis();
+        System.out.println("复制所用的时间为"+(end - start)+"毫秒");
+	}
+}</code></pre>
+
+
+
+<h2 id="四、特殊操作流"><a href="#四、特殊操作流" class="headerlink" title="四、特殊操作流"></a>四、特殊操作流</h2><h3 id="4-1、打印流"><a href="#4-1、打印流" class="headerlink" title="4.1、打印流"></a>4.1、打印流</h3><ul>
+<li><p>打印流分类：</p>
+<ul>
+<li>字节打印流：<code>PrintStream</code></li>
+<li>字符打印流：<code>PrintWriter</code></li>
+</ul>
+</li>
+<li><p>打印流的特点</p>
+<ul>
+<li>只负责输出数据，不负责读取数据</li>
+<li>永远不会抛出<code>IOException</code></li>
+<li>有自己的特有方法</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">//字节打印流
+public class PrintStreamDemo {
+    public static void main(String[] args) throws IOException {
+        //PrintStream(String fileName)：使用指定的文件名创建新的打印流
+        PrintStream ps = new PrintStream("myOtherStream\\ps.txt");
+        //写数据
+        ps.write(97);
+        //释放资源
+        ps.close();
+    }
+}
+
+//字符打印流
+public class PrintWriterDemo {
+    public static void main(String[] args) throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter("myOtherStream\\pw.txt"),true);
+        pw.println("hello");
+    //  pw.write("hello");
+        pw.flush();
+        pw.close();
+    }
+}</code></pre>
+
+<h3 id="4-2、对象流"><a href="#4-2、对象流" class="headerlink" title="4.2、对象流"></a>4.2、对象流</h3><ul>
+<li><p>对象流介绍：</p>
+<ul>
+<li><code>ObjectOutputStream</code>：对象序列化流<ul>
+<li>将对象保存到磁盘中去，或者在网络上传输对象。</li>
+<li>将Java对象的原始数据类型和图形写入<code>OutputStream</code>。</li>
+</ul>
+</li>
+<li><code>ObjectInputStream</code>：对象反序列化流<ul>
+<li><code>ObjectInputStream</code>反序列化先前使用<code>ObjectOutputStream</code>编写的原始数据和对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>示例：</p>
+<ul>
+<li><p>对象类</p>
+<pre class="language-java" data-language="java"><code class="language-java">class Employee implements Serializable{
+    private String name;
+    private String address;
+    private transient int age;      //此时不可被序列化
+    public Employee() {
+    }
+    public Employee(String name, String address, int age) {
+        this.name = name;
+        this.address = address;
+        this.age = age;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}</code></pre></li>
+<li><p>测试类</p>
+<pre class="language-java" data-language="java"><code class="language-java">public class ObjectStream {
+    public static void main(String[] args) throws Exception{
+        //初始化类
+        Employee em = new Employee("张珊","南京",20);
+        //确定目标文件
+        File file = new File("File1\\object.txt");
+        //创建序列化流对象
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+        //序列化输出
+        oos.writeObject(em);
+        //关闭流
+        oos.close();
+        System.out.println("序列化完成");
+       
+        //进行反序列化操作
+        Employee em1 = null;
+        //创建反序列化流
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+        //对象反序列化
+        em1 = (Employee)ois.readObject();
+        //关闭流
+        ois.close();
+        System.out.println(em1.toString());
+    }
+}</code></pre></li>
+</ul>
+</li>
+<li><p>注意事项</p>
+<ul>
+<li>一个对象要想被序列化，该对象所属的类必须必须实现<code>Serializable</code> 接口</li>
+<li><code>Serializable</code>是一个标记接口，实现该接口，不需要重写任何方法</li>
+<li>如果有一个属性不需要可序列化的，则该属性必须注明是瞬态的，使用<code>transient</code> 关键字修饰</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3、字节数组流"><a href="#4-3、字节数组流" class="headerlink" title="4.3、字节数组流"></a>4.3、字节数组流</h3><ul>
+<li><p>字节数组流介绍：</p>
+<ul>
+<li><code>ByteArrayInputStream</code>：字节数组输入流<ul>
+<li>包含一个内部缓冲区，该缓冲区包含从流中读取的字节</li>
+</ul>
+</li>
+<li><code>ByteArrayOutputStream</code>：字节数组输出流<ul>
+<li>此类实现一个输出流，其中的数据被写入一个<code>byte</code>数组</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>示例：</p>
+</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java">//从字符串中提取指定字符
+public class GByteArrayStream {
+    public static void main(String[] args) {
+        String s = "adsdQ46556$%^&amp;*WIEQRQ";
+        ByteArrayInputStream bais = new ByteArrayInputStream(s.getBytes());
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        int curr = -1;
+        while((curr = bais.read())!=-1) {
+            if((curr&gt;=65 &amp;&amp; curr&lt;=90) || (curr&gt;=97 &amp;&amp; curr&lt;=122)) {
+                baos.write(curr);
+            }
+        }
+        System.out.println(baos.toString());
+    }
+}</code></pre>
+
+<h3 id="4-4、应用案例"><a href="#4-4、应用案例" class="headerlink" title="4.4、应用案例"></a>4.4、应用案例</h3><p>实现文件的分割与合并</p>
+<pre class="language-java" data-language="java"><code class="language-java">public class HDataStream {
+    public static void main(String[] args) {
+//        File target = new File("E:\\IO流原理介绍.mp4");
+//        File combine = new File("D:\\File");
+//        Division(target,combine,1021*1024*20);
+
+        //合并文件测试
+        File target = new File("D:\\File");
+        File combin = new File("D:\\FindFile");
+        Merge(target,combin,"mp4");
+    }
+
+    /**文件的分割
+     * @param target:被分割目标文件位置
+     * @param combine:文件分割后存放位置
+     * @param cutsize:被分割文件后每个文件大小
+     */
+    public static void Division(File target,File combine,long cutsize){
+        if(target == null)return;
+        //计算文件分割的个数
+        int num = (target.length()%cutsize == 0)?(int) (target.length()/cutsize):(int)(target.length()/cutsize+1);
+        //构造文件输入流,输出流
+        try {
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(target));
+            BufferedOutputStream bos = null;
+            byte[] bytes = null;
+            int len = -1;
+            int count = 0;      //每个文件要读取的次数
+            for(int i=0;i&lt;num;i++){
+                String path = combine.getPath().concat("\\");
+                bos = new BufferedOutputStream(new FileOutputStream(new File(path+(i+1)+target.getName())));
+                if(cutsize&lt;=1024) {
+                    bytes = new byte[(int)cutsize];
+                    count = 1;
+                }else {
+                    bytes = new byte[1024];
+                    count = (int)cutsize/1024;		//计算每个分割文件需要读取的次数
+                }
+                while(count&gt;0 &amp;&amp; (len = bis.read(bytes))!=-1) {
+                    bos.write(bytes,0,len);
+                    bos.flush();
+                    count --;
+                }
+                if(cutsize%1024 !=0) {
+                    bytes = new byte[(int)cutsize%1024];
+                    len = bis.read(bytes);
+                    bos.write(bytes,0,len);
+                    bos.flush();
+                    bos.close();
+                }
+            }
+            bis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //文件的合并
+    public static void Merge(File target,File combin,String type){
+        if(target == null)return;
+        File[] files = target.listFiles();          //创建文件夹数组
+        String path = combin.getPath().concat("\\");
+        long start = System.currentTimeMillis();
+        try {
+            BufferedInputStream bis = null;
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(path+"合并文件."+type)));
+            for (int i = 0; i &lt; files.length; i++) {        //遍历文件夹
+                if(files[i].getName().endsWith(type)){
+                    bis = new BufferedInputStream(new FileInputStream(files[i]));
+                    byte[] bytes = new byte[1024];
+                    int len = -1;
+                    while ((len = bis.read(bytes))!= -1){
+                        bos.write(bytes,0,len);
+                    }
+                    bis.close();
+                }else
+                    continue;
+            }
+            bos.close();
+            long end = System.currentTimeMillis();
+            System.out.println("合并用时："+(end-start)+"毫秒");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+
+
+
+<h2 id="五、Properties文件操作"><a href="#五、Properties文件操作" class="headerlink" title="五、Properties文件操作"></a>五、Properties文件操作</h2><ul>
+<li><p><code>Properties</code>介绍</p>
+<ul>
+<li>是一个Map体系的集合类</li>
+<li>Properties可以保存到流中或从流中加载</li>
+<li>属性列表中的每个键及其对应的值都是一个字符串</li>
+</ul>
+</li>
+<li><p>示例</p>
+<ul>
+<li><p><code>Config.Properties</code>文件</p>
+<pre class="language-properties" data-language="properties"><code class="language-properties">VINCE=2
+PASSWORD=5841314
+USERNAME=laohu</code></pre></li>
+<li><p>测试类</p>
+<pre class="language-java" data-language="java"><code class="language-java">/**配置文件操作：Properties
+ * 用于读取配置文件
+ */
+public class Properties {
+    public static String VINCE = "";
+    public static String USERNAME = "";
+    public static String PASSWORD = "";
+    public static void main(String[] args) {
+        //对配置文件进行读取
+        Properties properties = new Properties();
+        try {
+            InputStream inputStream = new FileInputStream("Config.properties");
+            properties.load(inputStream);           //加载文件
+            VINCE = properties.getProperty("VINCE");                //从配置文件中获取对应的信息
+            USERNAME = properties.getProperty("USERNAME");
+            PASSWORD = properties.getProperty("PASSWORD");
+            inputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(IProperties.VINCE);
+        updata("2","laohu","5841314");
+    }
+
+    //对配置文件进行更新
+    public static void updata(String vince,String username,String password){
+        Properties properties = new Properties();
+        properties.put("VINCE",vince);              //参数分别为：所需更改的内容名称；更改后的内容
+        properties.put("USERNAME",username);
+        properties.put("PASSWORD",password);
+        try {
+            OutputStream outputStream = new FileOutputStream("Config.properties");
+            properties.store(outputStream,"updata");            //写入更改
+            System.out.println("更新完毕");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre></li>
+</ul>
+</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -1003,7 +1797,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">47.2k</span>
+                        class="white-color">62.3k</span>
             
             
             
